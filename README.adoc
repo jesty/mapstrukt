@@ -1,6 +1,4 @@
-:exampleTestdir: mapstrukt-example/src/test/kotlin
-
-# mapstrukt
+# Mapstrukt
 
 This project aims to improve the support of Mapstruct to Kotlin.
 This is a simple code generator that works beside the Mapstruct code generation, in order to add some extension functions to entities converted using Mapstruct.
@@ -20,4 +18,19 @@ instead of:
 val converter = Mappers.getMapper(PersonConverter::class.java)
 val person = Person("Samuel", "Jackson", "0123 334466", LocalDate.of(1948, 12, 21))
 val personDto = converter.convertToDto(person)
+----
+
+Under the hood what the generator does is to generate a Kotlin Object with some extension function, for instance, in the example above the generator creates:
+
+[source,kotlin]
+----
+package com.github.jesty
+  
+import org.mapstruct.example.kotlin.dto.PersonDto
+import org.mapstruct.example.kotlin.model.Person
+
+object Mapstrukt {
+    fun org.mapstruct.example.kotlin.model.Person.convertToDto(): PersonDto = org.mapstruct.factory.Mappers.getMapper(org.mapstruct.example.kotlin.converter.PersonConverter::class.java).convertToDto(this)
+
+}
 ----
