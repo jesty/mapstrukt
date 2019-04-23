@@ -1,0 +1,1 @@
+/Users/davidecerbo/Downloads/IdeaProjects/mapstrukt-kotlin/mapstrukt/build/classes/kotlin/main/com/github/jesty/mapstrukt/MapstruktGenerator$Companion.class:/Users/davidecerbo/Downloads/IdeaProjects/mapstrukt-kotlin/mapstrukt/build/classes/kotlin/main/com/github/jesty/mapstrukt/MapstruktGenerator.class
