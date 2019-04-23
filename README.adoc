@@ -1,7 +1,7 @@
 # Mapstrukt
 
-This project aims to improve the support of Mapstruct to Kotlin.
-This is a simple code generator that works beside the Mapstruct code generation, in order to add some extension functions to entities converted using Mapstruct.
+This project aims to improve the support of http://mapstruct.org/[Mapstruct] to Kotlin.
+This is a simple code generator that works beside the http://mapstruct.org/[Mapstruct] code generation, in order to add some extension functions to entities converted using http://mapstruct.org/[Mapstruct].
 
 So, you can use the converter method you definied, already on the source entity:
 
@@ -20,7 +20,7 @@ val person = Person("Samuel", "Jackson", "0123 334466", LocalDate.of(1948, 12, 2
 val personDto = converter.convertToDto(person)
 ----
 
-Under the hood what the generator does is to generate a Kotlin Object with some extension function, for instance, in the example above the generator creates:
+*Under the hood* what the generator does is to generate a Kotlin Object with some extension function, for instance, in the example above the generator creates:
 
 [source,kotlin]
 ----
@@ -33,4 +33,54 @@ object Mapstrukt {
     fun org.mapstruct.example.kotlin.model.Person.convertToDto(): PersonDto = org.mapstruct.factory.Mappers.getMapper(org.mapstruct.example.kotlin.converter.PersonConverter::class.java).convertToDto(this)
 
 }
+----
+
+The example project in `mapstrukt-example` folder is copied from https://github.com/mapstruct/mapstruct-examples/tree/master/mapstruct-kotlin-gradle.
+
+# Code generator setup
+
+The generator isn't available in any Maven repository, so you need to install it locally running in `mapstrukt` folder:
+
+----
+./gradlew build
+----
+
+After you can configure your plugin as shown below:
+
+build.gradle.kts
+[source,kotlin]
+----
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+  
+plugins {
+    kotlin("jvm") version "1.2.71"
+    kotlin("kapt") version "1.2.71"
+}
+
+group = "org.mapstruct.examples"
+version = "1.0.0-SNAPSHOT"
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile(kotlin("stdlib-jdk8"))
+    compile("org.mapstruct:mapstruct:1.3.0.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.3.0.Final")
+    kapt("com.github.jesty:mapstrukt:1.0.0-SNAPSHOT")
+
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.3.1")
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+    testCompile("org.assertj:assertj-core:3.11.1")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+val test by tasks.getting(Test::class) {
+    useJUnitPlatform { }
+}
+
 ----
