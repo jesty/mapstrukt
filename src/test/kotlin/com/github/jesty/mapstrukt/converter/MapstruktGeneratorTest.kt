@@ -17,11 +17,10 @@ class MapstruktGeneratorTest {
                 .withProcessors(MapstruktGenerator())
                 .compile(JavaFileObjects.forResource("PersonConverter.java"))
         val expectedFile = File("src/test/resources/Mapstrukt.expected")
-        val parent = File("Mapstrukt.kt")
-        val generatedFile = File(parent, "com/github/jesty/Mapstrukt.kt")
+        val generatedFile = File("com/github/jesty/Mapstrukt.kt")
         assertTrue("Generated file doesn't exists", generatedFile.exists())
         assertEquals("File isn't as expected", generatedFile.readText(), expectedFile.readText())
-        parent.deleteRecursively()
+        generatedFile.deleteRecursively()
     }
 
 }

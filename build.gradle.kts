@@ -1,6 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.gradle.jvm.tasks.Jar
+
 
 plugins {
+    `build-scan`
+    `maven-publish`
     kotlin("jvm") version "1.2.71"
     kotlin("kapt") version "1.2.71"
 }
@@ -10,6 +14,7 @@ version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -19,7 +24,6 @@ dependencies {
     compile("com.google.auto.service:auto-service:1.0-rc2")
 
     kapt("org.mapstruct:mapstruct-processor:1.3.0.Final")
-    //kapt("org.mapstruct.examples:mapstruct-kotlin-gradle:1.0.0-SNAPSHOT")
 
     testCompile("org.mockito:mockito-core:2.+")
     testCompile("com.google.testing.compile:compile-testing:0.15")
@@ -35,3 +39,18 @@ tasks.withType<KotlinCompile> {
 val test by tasks.getting(Test::class) {
     useJUnitPlatform { }
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("default") {
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            url = uri("$buildDir/repository")
+        }
+    }
+}
+
+

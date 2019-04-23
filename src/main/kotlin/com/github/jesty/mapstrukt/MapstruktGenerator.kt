@@ -30,7 +30,7 @@ class MapstruktGenerator : AbstractProcessor() {
     override fun process(set: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
         val pack = "com.github.jesty"
         val fileName = "Mapstrukt"
-        val classBuilder = TypeSpec.classBuilder(fileName)
+        val classBuilder = TypeSpec.objectBuilder(fileName)
         if (set.size == 0) return false
 
         val mappingMethods = roundEnv
@@ -69,7 +69,7 @@ class MapstruktGenerator : AbstractProcessor() {
                 .addType(classBuilder.build())
                 .build()
         val kaptKotlinGeneratedDir = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME]
-        file.writeTo(File(kaptKotlinGeneratedDir, "$fileName.kt"))
+        file.writeTo(File(kaptKotlinGeneratedDir, ""))
         return true
     }
 
