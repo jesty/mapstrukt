@@ -47,7 +47,7 @@ The generator isn't available in any Maven repository, so you need to install it
 
 After you can configure your plugin as shown below:
 
-build.gradle.kts
+.build.gradle.kts
 [source,kotlin]
 ----
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
