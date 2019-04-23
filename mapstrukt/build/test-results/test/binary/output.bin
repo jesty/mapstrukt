@@ -1,4 +1,0 @@
-Mapping methods #1
-)Inherit Inverse Configuration methods #1
-¢Creating extension function org.mapstruct.example.kotlin.model.Person.convertToDto for convertToDto(org.mapstruct.example.kotlin.model.Person) in PersonConverter
-¨Creating extension function org.mapstruct.example.kotlin.dto.PersonDto.convertToModel for convertToModel(org.mapstruct.example.kotlin.dto.PersonDto) in PersonConverter
