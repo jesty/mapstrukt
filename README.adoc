@@ -9,5 +9,5 @@ This is a simple code generator that works beside the Mapstruct code generation,
 
 [source, kotlin]
 ----
-include::{exampleTestdir}/org/mapstruct/example/kotlin/converter/PersonConverterTest.kt[lines=41..45]
+include::{exampleTestdir}/org/mapstruct/example/kotlin/converter/PersonConverterTest.kt
 ----
