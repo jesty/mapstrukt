@@ -1,4 +1,4 @@
-:exampleTestdir: mapstrukt/src/test/kotlin
+:exampleTestdir: mapstrukt-example/src/test/kotlin
 
 # mapstrukt
 
