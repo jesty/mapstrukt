@@ -8,15 +8,15 @@ So, you can use the converter method you definied, already on the source entity:
 [source,kotlin]
 ----
 val person = Person("Samuel", "Jackson", "0123 334466", LocalDate.of(1948, 12, 21))
-val personDto = person.convertToDto()
+val personDto = person.convertToDto
 ----
 
 instead of:
 
 [source,kotlin]
 ----
-val converter = Mappers.getMapper(PersonConverter::class.java)
 val person = Person("Samuel", "Jackson", "0123 334466", LocalDate.of(1948, 12, 21))
+val converter = Mappers.getMapper(PersonConverter::class.java)
 val personDto = converter.convertToDto(person)
 ----
 
